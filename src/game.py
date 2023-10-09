@@ -1,13 +1,16 @@
 from const import *
 import pygame
 from board import Board
+from dragger import Dragger
 
 class Game:
     def __init__(self) -> None:
         self.theme = THEMES["navy-beige"]
+        self.dragger = Dragger()
         self.board = Board()
         self.board.populate_board("white")
         self.board.populate_board("black")
+
 
 
     def render_bg(self, surface: pygame.surface) -> None:
