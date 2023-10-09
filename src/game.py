@@ -19,3 +19,12 @@ class Game:
                     color = self.theme[1]
                 
                 pygame.draw.rect(surface, color, (r * SQRSIZE, c * SQRSIZE, SQRSIZE, SQRSIZE))
+
+    def render_pieces(self, surface: pygame.surface) -> None:
+        for r in range(ROWS):
+            for c in range(COLS):
+                sqr = self.board[r][c]
+                if sqr.has_piece():
+
+                    texture = pygame.transform.smoothscale(sqr.piece.texture, (SQRSIZE, SQRSIZE))
+                    surface.blit(texture, (c*SQRSIZE, r*SQRSIZE))

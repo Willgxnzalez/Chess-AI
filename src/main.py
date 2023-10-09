@@ -19,6 +19,7 @@ class App:
                     if E.key == pygame.K_ESCAPE:
                         run = False
             engine.render_bg(self.win)
+            engine.render_pieces(self.win)
             pygame.display.update()
 
         pygame.quit()
