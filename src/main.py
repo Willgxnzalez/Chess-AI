@@ -20,8 +20,13 @@ class App:
                 if E.type == pygame.KEYDOWN:
                     if E.key == pygame.K_ESCAPE:
                         run = False
+
+                if E.type == pygame.MOUSEMOTION:
+                    pass
+
             engine.render_bg(self.win)
             engine.render_pieces(self.win)
+
             pygame.display.update()
 
         pygame.quit()
