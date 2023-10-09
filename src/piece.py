@@ -9,6 +9,7 @@ class Piece:
         self.value = value * (-1 if self.color == "white" else 1)
         self.texture = pygame.image.load(os.path.join(f"assets/images/imgs-80px/{self.color}_{self.rank}.png"))
         self.moves = []
+        self.moved = False
         self.rect = None
 
     def set_rect(self, rect: pygame.rect) -> None:
@@ -27,7 +28,11 @@ class Pawn(Piece):
         super().__init__("pawn", color, 1.0)
 
     def candidate_moves(self, row, col) -> list[tuple[int, int]]:
-        pass
+        moves = []
+        max_row = 3 if not self.moved else 2
+        for i in range(1, max_row):
+            moves.append((row+(i*self.direction), col))
+        return moves
 
 
 class Rook(Piece):

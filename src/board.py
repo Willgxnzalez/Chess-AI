@@ -28,8 +28,6 @@ class Board(list):
         self[others][6].set_piece(Knight(color))
         self[others][7].set_piece(Rook(color))
 
-        self[4][4].set_piece(King(color))
-
     def calc_valid_moves(self, sq: Square) -> None:
         piece, row, col = sq.piece, sq.row, sq.col
 
