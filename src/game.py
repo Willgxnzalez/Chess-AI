@@ -34,3 +34,11 @@ class Game:
         upscaled_texture = pygame.transform.smoothscale(self.dragger.piece.texture, (SQRSIZE * 1.5, SQRSIZE * 1.5))
         texture_center = upscaled_texture.get_rect(center=self.dragger.mouse_pos)
         surface.blit(upscaled_texture, texture_center)
+
+    def render_piece_moves(self, surface):
+        if self.dragger.holding:
+            print(self.dragger.piece.get_moves())
+            for move in self.dragger.piece.get_moves():
+
+                highlight = self.theme[2] if (move.dest.row + move.dest.col) % 2 == 0 else self.theme[3]
+                pygame.draw.rect(surface, highlight, (move.dest.col * SQRSIZE, move.dest.row * SQRSIZE, SQRSIZE, SQRSIZE))

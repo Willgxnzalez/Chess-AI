@@ -1,6 +1,7 @@
 from const import *
 from square import Square
 from piece import *
+from move import Move
 
 class Board(list):
     def __init__(self) -> None:
@@ -27,9 +28,12 @@ class Board(list):
         self[others][6].set_piece(Knight(color))
         self[others][7].set_piece(Rook(color))
 
-    def calc_valid_moves(self, piece: Piece, row: int, col: int) -> None:
+    def calc_valid_moves(self, sq: Square) -> None:
+        piece, row, col = sq.piece, sq.row, sq.col
+
         for r, c in piece.candidate_moves(row, col):
             if self.in_range(r, c):
                 if not self[r][c].has_piece() or self[r][c].is_rival(piece):
+                    piece.add_move(Move(Square(row, col), Square(r, c)))
                     print(r, c)
 

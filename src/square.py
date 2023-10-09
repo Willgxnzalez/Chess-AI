@@ -1,10 +1,10 @@
 from piece import Piece
 
 class Square:
-    def __init__(self, row: int, col: int) -> None:
+    def __init__(self, row: int, col: int, piece: Piece = None) -> None:
         self.row = row
         self.col = col
-        self.piece = None
+        self.piece = piece
 
     def set_piece(self, piece: Piece) -> None:
         self.piece = piece

@@ -32,6 +32,7 @@ class App:
                     clicked_square = board[row][col]
 
                     if clicked_square.has_piece():
+                        board.calc_valid_moves(clicked_square)
                         dragger.set_origin(E.pos)
                         dragger.grab_piece(clicked_square.piece)
 
@@ -43,11 +44,13 @@ class App:
                     dragger.release_piece()
             
             engine.render_bg(self.win)
-            engine.render_pieces(self.win)
-            
-            if dragger.holding:
-                engine.render_held_piece(self.win)
 
+            if dragger.holding:
+                engine.render_piece_moves(self.win)
+                engine.render_pieces(self.win)
+                engine.render_held_piece(self.win)
+            else:
+                engine.render_pieces(self.win)
             pygame.display.update()
 
         pygame.quit()

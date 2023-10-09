@@ -14,8 +14,11 @@ class Piece:
     def set_rect(self, rect: pygame.rect) -> None:
         self.rect = rect
 
-    def add_move(self, move: Move) -> None:
+    def add_move(self, move) -> None:
         self.moves.append(move)
+
+    def get_moves(self) -> list:
+        return self.moves
 
 class Pawn(Piece):
     def __init__(self, color: str) -> None:
@@ -46,7 +49,7 @@ class Knight(Piece):
                 (row+2, col-1),
                 (row+1, col-2),
                 (row-1, col-2),
-                (row-2, col-2))
+                (row-2, col-1))
 
 class Bishop(Piece):
     def __init__(self, color: str) -> None:
