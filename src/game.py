@@ -3,7 +3,7 @@ import pygame
 
 class Game:
     def __init__(self):
-        self.theme = COLORS["navy-beige"]
+        self.theme = THEMES["navy-beige"]
 
     def render_bg(self, surface):
         for r in range(ROWS):
