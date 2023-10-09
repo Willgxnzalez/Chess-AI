@@ -5,3 +5,5 @@ ROWS = 8
 COLS = 8
 
 SQRSIZE = WIDTH // COLS
+
+COLORS = {"navy-beige": ((67,84,115), (226,203,176))}
