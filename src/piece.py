@@ -62,7 +62,16 @@ class Bishop(Piece):
         super().__init__("bishop", color, 3.1)
 
     def candidate_moves(self, row, col) -> list[tuple[int, int]]:
-        pass
+        diagonals = []
+        for i in range(1, min(row, col)+1):  # top-left diagonal
+            diagonals.append((row - i, col - i))
+        for i in range(1, min(row, COLS-col-1)+1): # top-right 
+            diagonals.append((row - i, col + i))
+        for i in range(1, min(ROWS-row-1, COLS-col-1)+1): # bottom-right
+            diagonals.append((row + i, col + i))
+        for i in range(1, min(ROWS-row-1, col)+1): # bottom-left
+            diagonals.append((row + i, col - i))
+        return diagonals
 
 class Queen(Piece):
     def __init__(self, color: str) -> None:
