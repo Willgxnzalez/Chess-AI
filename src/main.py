@@ -4,11 +4,11 @@ import pygame
 from game import Game
 
 class App:
-    def __init__(self):
+    def __init__(self) -> None:
         self.win = pygame.display.set_mode((WIDTH, HEIGHT))
         self.engine = Game()
 
-    def mainloop(self):
+    def mainloop(self) -> None:
         engine = self.engine
         
         run = True
