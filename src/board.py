@@ -6,8 +6,7 @@ class Board(list):
     def __init__(self) -> None:
         super().__init__([Square(r,c) for c in range(COLS)] for r in range(ROWS))
 
-    @staticmethod
-    def in_range(*indices):
+    def in_range(self, *indices):
         for i in indices:
             if i < 0 or i > 7:
                 return False
@@ -28,7 +27,9 @@ class Board(list):
         self[others][6].set_piece(Knight(color))
         self[others][7].set_piece(Rook(color))
 
-    def calc_valid_moves(self):
-        pass
-
+    def calc_valid_moves(self, sq: Square):
+        for r, c in sq.piece.candidate_moves(sq.row, sq.col):
+            if self.in_range(r, c):
+                if not self[r][c].has_piece() or self[r][c].is_rival(sq.piece):
+                    print(r, c)
 
