@@ -4,5 +4,9 @@ class Square:
         self.col = col
         self.piece = None
 
+    def set_piece(self, piece):
+        self.piece = piece
+
+    
     def __repr__(self):
         return f"Square({self.row}, {self.col})"
