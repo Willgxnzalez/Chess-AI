@@ -1,14 +1,14 @@
 from const import *
 from square import Square
+from piece import Piece
 
 class Board:
     def __init__(self) -> None:
-        self.board = [[Square(r,c) for c in range(COLS)] for r in range(ROWS)]
-        self.populate_board(self.board)
-        print(self.board)
+        self.sqrs = [[Square(r,c) for c in range(COLS)] for r in range(ROWS)]
+        self.populate_board(self.sqrs)
 
-    def populate_board(self, bo: list) -> None:
+    def populate_board(self, sqrs: list) -> None:
         for r in range(ROWS):
             for c in range(COLS):
-                bo[r][c].piece = 0
+                sqrs[r][c].piece = Piece("rook", "white", 9)
                 

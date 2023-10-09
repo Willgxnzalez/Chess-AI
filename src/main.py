@@ -10,7 +10,6 @@ class App:
 
     def mainloop(self) -> None:
         engine = self.engine
-        
         run = True
         while run:
             for E in pygame.event.get():
@@ -19,7 +18,6 @@ class App:
                 if E.type == pygame.KEYDOWN:
                     if E.key == pygame.K_ESCAPE:
                         run = False
-
             engine.render_bg(self.win)
             pygame.display.update()
 
