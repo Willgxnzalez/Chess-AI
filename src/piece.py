@@ -88,4 +88,6 @@ class King(Piece):
         super().__init__("king", color, 5000.0)
 
     def candidate_moves(self, row, col) -> list[tuple[int, int]]:
-        pass 
+        return [(row-1, col-1), (row-1, col), (row-1, col+1),
+                   (row, col-1), (row, col), (row, col+1),
+                (row+1, col-1), (row+1, col), (row+1, col+1)]
