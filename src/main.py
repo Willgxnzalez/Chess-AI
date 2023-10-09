@@ -17,6 +17,9 @@ class App:
         run = True
         while run:
             self.clock.tick(FPS)
+
+            engine.render_bg(self.win)
+
             for E in pygame.event.get():
                 if E.type == pygame.QUIT:
                     run = False
@@ -33,13 +36,16 @@ class App:
                     if clicked_square.has_piece():
                         dragger.set_origin(E.pos)
                         dragger.grab_piece(clicked_square.piece)
+                    
+                    print(dragger.holding)
 
-                    print(dragger.piece)
-                    print(dragger.origin)
+                if E.type == pygame.MOUSEMOTION:
+                    if dragger.holding:
+                        dragger.update_mouse_pos(E.pos)
+                        engine.render_held_piece(self.win)
 
-    
 
-            engine.render_bg(self.win)
+            
             engine.render_pieces(self.win)
 
             pygame.display.update()
