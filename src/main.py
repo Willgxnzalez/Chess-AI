@@ -11,6 +11,7 @@ class App:
 
     def mainloop(self) -> None:
         engine = self.engine
+        board = engine.board
         dragger = engine.dragger
 
         run = True
@@ -27,9 +28,14 @@ class App:
                     dragger.update_mouse_pos(E.pos)
 
                     row, col = dragger.get_board_pos()
-                    print(row, col)
-                    if engine.board[row][col].has_piece():
-                        pass
+                    clicked_square = board[row][col]
+
+                    if clicked_square.has_piece():
+                        dragger.set_origin(E.pos)
+                        dragger.grab_piece(clicked_square.piece)
+
+                    print(dragger.piece)
+                    print(dragger.origin)
 
     
 
