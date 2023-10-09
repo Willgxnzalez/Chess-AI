@@ -8,10 +8,14 @@ class Piece:
         self.color = color
         self.value = value * (-1 if self.color == "white" else 1)
         self.texture = pygame.image.load(os.path.join(f"assets/images/imgs-80px/{self.color}_{self.rank}.png"))
+        self.moves = []
         self.rect = None
 
     def set_rect(self, rect: pygame.rect) -> None:
         self.rect = rect
+
+    def add_move(self, move: Move) -> None:
+        self.moves.append(move)
 
 class Pawn(Piece):
     def __init__(self, color: str) -> None:

@@ -27,9 +27,9 @@ class Board(list):
         self[others][6].set_piece(Knight(color))
         self[others][7].set_piece(Rook(color))
 
-    def calc_valid_moves(self, sq: Square):
-        for r, c in sq.piece.candidate_moves(sq.row, sq.col):
+    def calc_valid_moves(self, piece: Piece, row: int, col: int) -> None:
+        for r, c in piece.candidate_moves(row, col):
             if self.in_range(r, c):
-                if not self[r][c].has_piece() or self[r][c].is_rival(sq.piece):
+                if not self[r][c].has_piece() or self[r][c].is_rival(piece):
                     print(r, c)
 
