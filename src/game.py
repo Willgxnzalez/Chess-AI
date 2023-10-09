@@ -37,7 +37,6 @@ class Game:
 
     def render_piece_moves(self, surface):
         if self.dragger.holding:
-            print(self.dragger.piece.get_moves())
             for move in self.dragger.piece.get_moves():
 
                 highlight = self.theme[2] if (move.dest.row + move.dest.col) % 2 == 0 else self.theme[3]

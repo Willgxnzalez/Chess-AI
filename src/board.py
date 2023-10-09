@@ -35,5 +35,4 @@ class Board(list):
             if self.in_range(r, c):
                 if not self[r][c].has_piece() or self[r][c].is_rival(piece):
                     piece.add_move(Move(Square(row, col), Square(r, c)))
-                    print(r, c)
 
