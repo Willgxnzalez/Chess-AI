@@ -21,6 +21,8 @@ class Dragger:
         self.piece = piece
         self.holding = True
 
-
+    def release_piece(self):
+        self.piece = None
+        self.holding = False
 
 
