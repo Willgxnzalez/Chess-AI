@@ -1,9 +1,12 @@
 from const import *
 import pygame
+from board import Board
 
 class Game:
     def __init__(self):
         self.theme = THEMES["navy-beige"]
+        self.board = Board()
+
 
     def render_bg(self, surface):
         for r in range(ROWS):
