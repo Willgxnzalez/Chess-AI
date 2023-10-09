@@ -44,6 +44,7 @@ class App:
             
             engine.render_bg(self.win)
             engine.render_pieces(self.win)
+            
             if dragger.holding:
                 engine.render_held_piece(self.win)
 

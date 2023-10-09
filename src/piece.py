@@ -19,6 +19,9 @@ class Pawn(Piece):
         self.direction = -1 if color == "white" else 1
         super().__init__("pawn", color, 1.0)
 
+    def calc_valid_moves(self):
+        pass
+
 class Rook(Piece):
     def __init__(self, color: str) -> None:
         self.direction = -1 if color == "white" else 1
