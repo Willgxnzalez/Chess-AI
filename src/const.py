@@ -1,6 +1,8 @@
 WIDTH = 400
 HEIGHT = 400
 
+FPS = 60
+
 ROWS = 8
 COLS = 8
 
