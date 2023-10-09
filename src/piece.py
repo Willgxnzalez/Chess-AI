@@ -20,6 +20,7 @@ class Piece:
     def get_moves(self) -> list:
         return self.moves
 
+
 class Pawn(Piece):
     def __init__(self, color: str) -> None:
         self.direction = -1 if color == "white" else 1
@@ -28,9 +29,9 @@ class Pawn(Piece):
     def candidate_moves(self, row, col) -> list[tuple[int, int]]:
         pass
 
+
 class Rook(Piece):
     def __init__(self, color: str) -> None:
-        self.direction = -1 if color == "white" else 1
         super().__init__("rook", color, 5.0)
 
     def candidate_moves(self, row, col) -> list[tuple[int, int]]:
@@ -41,9 +42,9 @@ class Rook(Piece):
             moves.append((row, c))
         return moves
 
+
 class Knight(Piece):
     def __init__(self, color: str) -> None:
-        self.direction = -1 if color == "white" else 1
         super().__init__("knight", color, 3.0)
 
     def candidate_moves(self, row, col) -> list[tuple[int, int]]:
@@ -56,9 +57,9 @@ class Knight(Piece):
                 (row-1, col-2),
                 (row-2, col-1)]
 
+
 class Bishop(Piece):
     def __init__(self, color: str) -> None:
-        self.direction = -1 if color == "white" else 1
         super().__init__("bishop", color, 3.1)
 
     def candidate_moves(self, row, col) -> list[tuple[int, int]]:
@@ -73,18 +74,18 @@ class Bishop(Piece):
             diagonals.append((row + i, col - i))
         return diagonals
 
+
 class Queen(Piece):
     def __init__(self, color: str) -> None:
-        self.direction = -1 if color == "white" else 1
         super().__init__("queen", color, 9.0)
 
-    def candidate_moves(self, row, col)-> list[tuple[int, int]]:
-        pass
+    def candidate_moves(self, row, col) -> list[tuple[int, int]]:
+        return Bishop.candidate_moves(self, row, col) + Rook.candidate_moves(self, row, col)
+
 
 class King(Piece):
     def __init__(self, color: str) -> None:
-        self.direction = -1 if color == "white" else 1
         super().__init__("king", color, 5000.0)
 
     def candidate_moves(self, row, col) -> list[tuple[int, int]]:
-        pass
+        pass 
