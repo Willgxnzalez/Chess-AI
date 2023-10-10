@@ -41,6 +41,7 @@ class App:
                         dragger.update_mouse_pos(E.pos)
 
                 if E.type == pygame.MOUSEBUTTONUP:
+                    
                     dragger.release_piece()
             
             engine.render_bg(self.win)

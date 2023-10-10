@@ -17,5 +17,8 @@ class Square:
         if self.piece:
             return self.piece.color != other.color
 
+    def __eq__(self, other) -> bool:
+        return self.piece == other.piece and self.row == other.row and self.col == other.col
+
     def __repr__(self):
         return f"Square({self.row}, {self.col})"
