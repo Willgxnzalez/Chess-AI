@@ -22,7 +22,9 @@ class Dragger:
         self.holding = True
 
     def release_piece(self) -> None:
-        self.piece = None
-        self.holding = False
+        if self.piece:
+            self.piece.clear_moves()
+            self.piece = None
+            self.holding = False
 
 

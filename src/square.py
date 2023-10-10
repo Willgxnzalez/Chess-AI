@@ -12,7 +12,7 @@ class Square:
     def has_piece(self) -> bool:
         return self.piece != None
     
-    def rivals(self, other: Piece):
+    def rivals(self, other: Piece) -> bool:
         """returns true if the piece in this square rivals other"""
         if self.piece:
             return self.piece.color != other.color

@@ -35,12 +35,14 @@ class Game:
         texture_center = upscaled_texture.get_rect(center=self.dragger.mouse_pos)
         surface.blit(upscaled_texture, texture_center)
 
-    def render_piece_moves(self, surface):
+    def render_piece_moves(self, surface) -> None:
         if self.dragger.holding:
             for move in self.dragger.piece.get_moves():
+                # create transparent surface for highlight
                 highlight = pygame.Surface((SQRSIZE, SQRSIZE))
                 highlight.fill(self.theme[2])
-                highlight.set_alpha(100)
+                highlight.set_alpha(130)
+
                 surface.blit(highlight, (move.dest.col * SQRSIZE, move.dest.row * SQRSIZE))
 
 

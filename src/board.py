@@ -7,7 +7,7 @@ class Board(list):
     def __init__(self) -> None:
         super().__init__([Square(r,c) for c in range(COLS)] for r in range(ROWS))
 
-    def in_range(self, *indices):
+    def in_range(self, *indices) -> bool:
         for i in indices:
             if i < 0 or i > 7:
                 return False

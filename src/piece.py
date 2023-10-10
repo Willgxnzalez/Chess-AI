@@ -20,6 +20,9 @@ class Piece:
 
     def get_moves(self) -> list:
         return self.moves
+    
+    def clear_moves(self) -> None:
+        self.moves.clear()
 
 
 class Pawn(Piece):
