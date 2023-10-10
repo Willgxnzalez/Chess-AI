@@ -43,7 +43,7 @@ class App:
                     row, col = dragger.get_board_pos()
                     selected_square = board[row][col]
 
-                    if selected_square.has_piece():
+                    if selected_square.has_piece() and (selected_square.piece.color == engine.current_turn):
                         board.get_valid_moves(selected_square.piece, row, col)
                         dragger.set_origin(selected_square)
                         dragger.grab_piece(selected_square.piece)
@@ -61,6 +61,7 @@ class App:
 
                         move_attempt = board.create_move(dragger.get_origin(), selected_square)
                         if board.valid_move(dragger.piece, move_attempt):
+                            engine.change_turn()
                             board.move_piece(dragger.piece, move_attempt)
 
                         dragger.release_piece()

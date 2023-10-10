@@ -9,6 +9,7 @@ class Game:
         self.theme = THEMES[self.theme_index]
         self.dragger = Dragger()
         self.board = Board()
+        self.current_turn = "white"
 
     def reset(self):
         self.__init__()
@@ -16,6 +17,9 @@ class Game:
     def change_theme(self):
         self.theme_index = (self.theme_index + 1) % len(THEMES)
         self.theme = THEMES[self.theme_index]
+
+    def change_turn(self):
+        self.current_turn = "black" if self.current_turn == "white" else "white"
 
     def render_bg(self, surface: pygame.surface) -> None:
         for r in range(ROWS):

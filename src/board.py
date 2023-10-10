@@ -121,7 +121,7 @@ class Board(list):
         self[move.origin.row][move.origin.col].piece = None
         self[move.dest.row][move.dest.col].piece = piece
 
-        piece.moved = True
+        piece.active = True
         # reset possible moves from old square
         piece.clear_moves()
 
