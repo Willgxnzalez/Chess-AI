@@ -1,4 +1,4 @@
-from const import SQRSIZE
+from configs import SQRSIZE
 import pygame
 from square import Square
 

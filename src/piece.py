@@ -1,4 +1,4 @@
-from const import *
+from configs import *
 import pygame
 import os
 

@@ -1,4 +1,4 @@
-from const import *
+from configs import *
 from square import Square
 from piece import *
 from move import Move
@@ -7,6 +7,8 @@ class Board(list):
     def __init__(self) -> None:
         super().__init__([Square(r,c) for c in range(COLS)] for r in range(ROWS))
         self.prev_move = None
+        self.populate_board("white")
+        self.populate_board("black")
 
     def in_range(self, *indices) -> bool:
         for i in indices:

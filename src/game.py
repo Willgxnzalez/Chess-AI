@@ -1,18 +1,21 @@
-from const import *
+from configs import *
 import pygame
 from board import Board
 from dragger import Dragger
 
 class Game:
     def __init__(self) -> None:
-        self.theme = THEMES["dusk"]
+        self.theme_index = 0
+        self.theme = THEMES[self.theme_index]
         self.dragger = Dragger()
         self.board = Board()
-        self.board.populate_board("white")
-        self.board.populate_board("black")
 
     def reset(self):
         self.__init__()
+
+    def change_theme(self):
+        self.theme_index = (self.theme_index + 1) % len(THEMES)
+        self.theme = THEMES[self.theme_index]
 
     def render_bg(self, surface: pygame.surface) -> None:
         for r in range(ROWS):

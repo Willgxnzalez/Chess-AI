@@ -1,4 +1,4 @@
-from const import *
+from configs import *
 import sys
 import os
 import pygame
@@ -34,6 +34,8 @@ class App:
                         board = engine.board
                         dragger = engine.dragger
 
+                    if E.key == pygame.K_t:
+                        engine.change_theme()
 
                 if E.type == pygame.MOUSEBUTTONDOWN:
                     dragger.update_mouse_pos(E.pos)
