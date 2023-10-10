@@ -28,7 +28,12 @@ class Board(list):
         self[others][6].set_piece(Knight(color))
         self[others][7].set_piece(Rook(color))
 
-        self[4][4].set_piece(Knight(color))
+        self[3][3].set_piece(Pawn("black"))
+        self[3][4].set_piece(Pawn("black"))
+        self[4][3].set_piece(Pawn("white"))
+        self[4][4].set_piece(Pawn("white"))
+
+        self[4][1].set_piece(Queen("black"))
 
     def get_straights(self, row, col) -> list[tuple[int, int]]:
         straights = []
@@ -70,37 +75,43 @@ class Board(list):
             if self[row+i][col-i].has_piece(): break
         return diagonals
         
-    def get_valid_moves(self, sq: Square) -> None:
-        piece, row, col = sq.piece, sq.row, sq.col
+    def get_valid_moves(self, piece: Piece, row: int, col: int) -> None:
     
+        # pawns
         if piece.rank == "pawn":
-            viable_moves = []
             # forward
             max_row = 3 if not piece.moved else 2
             for i in range(1, max_row):
-                viable_moves.append((row + (i * piece.direction), col))
+                new_row = row + (i * piece.direction)
+                if self.in_range(new_row, col) and not self[new_row][col].has_piece():
+                    piece.add_move(Move(Square(row, col), Square(new_row, col)))
+                else: break
             # adjacent
-
-            
-        elif piece.rank == "knight":
-            viable_moves = [(row-2, col+1), (row-1, col+2), (row+1, col+2), (row+2, col+1),
-                               (row+2, col-1), (row+1, col-2), (row-1, col-2), (row-2, col-1)]
+            for new_col in (col-1, col+1):
+                new_row = row + piece.direction
+                if self.in_range(new_row, new_col) and self[new_row][new_col].rivals(piece):
+                    piece.add_move(Move(Square(row, col), Square(new_row, new_col)))
+            return
+        
+        # other pieces
+        if piece.rank == "knight":
+            possible_moves = [(row-2, col+1), (row-1, col+2), (row+1, col+2), (row+2, col+1),
+                            (row+2, col-1), (row+1, col-2), (row-1, col-2), (row-2, col-1)]
         elif piece.rank == "rook":
-            viable_moves = self.get_straights(row, col)
+            possible_moves = self.get_straights(row, col)
 
         elif piece.rank == "bishop":
-            viable_moves = self.get_diagonals(row, col)
+            possible_moves = self.get_diagonals(row, col)
 
         elif piece.rank == "queen":
-            viable_moves = self.get_diagonals(row, col) + self.get_straights(row, col)
+            possible_moves = self.get_diagonals(row, col) + self.get_straights(row, col)
         
         elif piece.rank == "king":
-            viable_moves = [(row-1, col-1), (row-1, col), (row-1, col+1),
+            possible_moves = [(row-1, col-1), (row-1, col), (row-1, col+1),
                             (row, col - 1), ( row, col ), (row, col + 1),
                             (row+1, col-1), (row+1, col), (row+1, col+1)]
 
-        for r, c in viable_moves:
-            if self.in_range(r, c):
-                if not self[r][c].has_piece() or self[r][c].is_rival(piece):
-                    piece.add_move(Move(Square(row, col), Square(r, c)))
+        for r, c in possible_moves:
+            if self.in_range(r, c) and (not self[r][c].has_piece() or self[r][c].rivals(piece)):
+                piece.add_move(Move(Square(row, col), Square(r, c)))
 
