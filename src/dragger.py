@@ -15,6 +15,9 @@ class Dragger:
     def set_origin(self, origin: Square) -> None:
         self.origin = origin
 
+    def get_origin(self) -> Square:
+        return self.origin
+
     def get_board_pos(self) -> tuple[int, int]:
         return self.mouse_pos[1] //SQRSIZE, self.mouse_pos[0] // SQRSIZE
     

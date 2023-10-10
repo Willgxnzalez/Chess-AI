@@ -46,9 +46,8 @@ class App:
                     row, col = dragger.get_board_pos()
                     selected_square = board[row][col]
 
+                    move_attempt = board.create_move(dragger.get_origin(), selected_square)
                     
-
-
 
                     dragger.release_piece()
             

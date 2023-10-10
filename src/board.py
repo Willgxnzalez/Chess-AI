@@ -84,13 +84,13 @@ class Board(list):
             for i in range(1, max_row):
                 new_row = row + (i * piece.direction)
                 if self.in_range(new_row, col) and not self[new_row][col].has_piece():
-                    piece.add_move(Move(Square(row, col), Square(new_row, col)))
+                    piece.add_move(self.create_move(Square(row, col), Square(new_row, col)))
                 else: break
             # adjacent
             for new_col in (col-1, col+1):
                 new_row = row + piece.direction
                 if self.in_range(new_row, new_col) and self[new_row][new_col].rivals(piece):
-                    piece.add_move(Move(Square(row, col), Square(new_row, new_col)))
+                    piece.add_move(self.create_move(Square(row, col), Square(new_row, new_col)))
             return
         
         # other pieces
@@ -113,7 +113,10 @@ class Board(list):
 
         for r, c in possible_moves:
             if self.in_range(r, c) and (not self[r][c].has_piece() or self[r][c].rivals(piece)):
-                piece.add_move(Move(Square(row, col), Square(r, c)))
+                piece.add_move(self.create_move(Square(row, col), Square(r, c)))
 
     def valid_move(self, piece: Piece, move: Move) -> bool:
         return move in piece.get_moves()
+    
+    def create_move(self, origin: Square, dest: Square) -> Move:
+        return Move(origin, dest)
