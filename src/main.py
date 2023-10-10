@@ -47,7 +47,8 @@ class App:
                     selected_square = board[row][col]
 
                     move_attempt = board.create_move(dragger.get_origin(), selected_square)
-                    
+                    if board.valid_move(dragger.piece, move_attempt):
+                        print("Valid move:", move_attempt)
 
                     dragger.release_piece()
             
