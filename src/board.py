@@ -28,13 +28,6 @@ class Board(list):
         self[others][6].set_piece(Knight(color))
         self[others][7].set_piece(Rook(color))
 
-        self[3][3].set_piece(Pawn("black"))
-        self[3][4].set_piece(Pawn("black"))
-        self[4][3].set_piece(Pawn("white"))
-        self[4][4].set_piece(Pawn("white"))
-
-        self[4][1].set_piece(Queen("black"))
-
     def get_straights(self, row, col) -> list[tuple[int, int]]:
         straights = []
         # up

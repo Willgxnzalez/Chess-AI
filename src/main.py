@@ -1,11 +1,14 @@
 from const import *
 import sys
+import os
 import pygame
 from game import Game
 
 class App:
     def __init__(self) -> None:
         self.win = pygame.display.set_mode((WIDTH, HEIGHT))
+        pygame.display.set_caption("Chess-AI")
+        pygame.display.set_icon(pygame.image.load(os.path.join(f"assets/images/icon-1.png")))
         self.clock = pygame.time.Clock()
         self.engine = Game()
 
