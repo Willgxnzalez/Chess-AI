@@ -1,5 +1,6 @@
 from const import SQRSIZE
 import pygame
+from square import Square
 
 class Dragger:
     def __init__(self) -> None:
@@ -11,8 +12,8 @@ class Dragger:
     def update_mouse_pos(self, pos: tuple[int, int]) -> None:
         self.mouse_pos = pos
 
-    def set_origin(self, pos: tuple[int, int]) -> None:
-        self.origin = (pos[1] // SQRSIZE, pos[0] // SQRSIZE)
+    def set_origin(self, origin: Square) -> None:
+        self.origin = origin
 
     def get_board_pos(self) -> tuple[int, int]:
         return self.mouse_pos[1] //SQRSIZE, self.mouse_pos[0] // SQRSIZE
@@ -22,9 +23,7 @@ class Dragger:
         self.holding = True
 
     def release_piece(self) -> None:
-        if self.piece:
-            self.piece.clear_moves()
-            self.piece = None
-            self.holding = False
+        self.piece = None
+        self.holding = False
 
 

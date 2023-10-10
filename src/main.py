@@ -29,19 +29,27 @@ class App:
                     dragger.update_mouse_pos(E.pos)
 
                     row, col = dragger.get_board_pos()
-                    clicked_square = board[row][col]
+                    selected_square = board[row][col]
 
-                    if clicked_square.has_piece():
-                        board.get_valid_moves(clicked_square.piece, row, col)
-                        dragger.set_origin(E.pos)
-                        dragger.grab_piece(clicked_square.piece)
+                    if selected_square.has_piece():
+                        board.get_valid_moves(selected_square.piece, row, col)
+                        dragger.set_origin(selected_square)
+                        dragger.grab_piece(selected_square.piece)
 
                 if E.type == pygame.MOUSEMOTION:
                     if dragger.holding:
                         dragger.update_mouse_pos(E.pos)
 
                 if E.type == pygame.MOUSEBUTTONUP:
+                    dragger.update_mouse_pos(E.pos)
+
+                    row, col = dragger.get_board_pos()
+                    selected_square = board[row][col]
+
                     
+
+
+
                     dragger.release_piece()
             
             engine.render_bg(self.win)
