@@ -38,6 +38,10 @@ class Game:
     def render_piece_moves(self, surface):
         if self.dragger.holding:
             for move in self.dragger.piece.get_moves():
+                highlight = pygame.Surface((SQRSIZE, SQRSIZE))
+                highlight.fill(self.theme[2])
+                highlight.set_alpha(100)
+                surface.blit(highlight, (move.dest.col * SQRSIZE, move.dest.row * SQRSIZE))
 
-                highlight = self.theme[2] if (move.dest.row + move.dest.col) % 2 == 0 else self.theme[3]
-                pygame.draw.rect(surface, highlight, (move.dest.col * SQRSIZE, move.dest.row * SQRSIZE, SQRSIZE, SQRSIZE))
+
+                
