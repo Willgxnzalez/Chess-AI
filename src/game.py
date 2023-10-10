@@ -11,6 +11,9 @@ class Game:
         self.board.populate_board("white")
         self.board.populate_board("black")
 
+    def reset(self):
+        self.__init__()
+
     def render_bg(self, surface: pygame.surface) -> None:
         for r in range(ROWS):
             for c in range(COLS):

@@ -28,6 +28,13 @@ class App:
                     if E.key == pygame.K_ESCAPE:
                         run = False
 
+                    if E.key == pygame.K_r:
+                        engine.reset()
+                        engine = self.engine
+                        board = engine.board
+                        dragger = engine.dragger
+
+
                 if E.type == pygame.MOUSEBUTTONDOWN:
                     dragger.update_mouse_pos(E.pos)
 
