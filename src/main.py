@@ -32,7 +32,7 @@ class App:
                     clicked_square = board[row][col]
 
                     if clicked_square.has_piece():
-                        board.calc_valid_moves(clicked_square)
+                        board.get_valid_moves(clicked_square)
                         dragger.set_origin(E.pos)
                         dragger.grab_piece(clicked_square.piece)
 
