@@ -64,6 +64,7 @@ class App:
                         dragger.release_piece()
             
             engine.render_bg(self.win)
+            engine.render_previous_move(self.win)
 
             if dragger.holding:
                 engine.render_piece_moves(self.win)

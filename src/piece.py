@@ -9,7 +9,7 @@ class Piece:
         self.value = value * (-1 if self.color == "white" else 1)
         self.texture = pygame.image.load(os.path.join(f"assets/images/imgs-80px/{self.color}_{self.rank}.png"))
         self._moves = []
-        self.moved = False
+        self.active = False
         self.rect = None
 
     def set_rect(self, rect: pygame.rect) -> None:

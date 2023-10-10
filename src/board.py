@@ -6,6 +6,7 @@ from move import Move
 class Board(list):
     def __init__(self) -> None:
         super().__init__([Square(r,c) for c in range(COLS)] for r in range(ROWS))
+        self.prev_move = None
 
     def in_range(self, *indices) -> bool:
         for i in indices:
@@ -73,7 +74,7 @@ class Board(list):
         # pawns
         if piece.rank == "pawn":
             # forward
-            max_row = 3 if not piece.moved else 2
+            max_row = 3 if not piece.active else 2
             for i in range(1, max_row):
                 new_row = row + (i * piece.direction)
                 if self.in_range(new_row, col) and not self[new_row][col].has_piece():
@@ -121,3 +122,5 @@ class Board(list):
         piece.moved = True
         # reset possible moves from old square
         piece.clear_moves()
+
+        self.prev_move = move

@@ -5,7 +5,7 @@ from dragger import Dragger
 
 class Game:
     def __init__(self) -> None:
-        self.theme = THEMES["navy-beige"]
+        self.theme = THEMES["dusk"]
         self.dragger = Dragger()
         self.board = Board()
         self.board.populate_board("white")
@@ -46,6 +46,17 @@ class Game:
                 highlight.set_alpha(130)
 
                 surface.blit(highlight, (move.dest.col * SQRSIZE, move.dest.row * SQRSIZE))
+
+    def render_previous_move(self, surface):
+        if self.board.prev_move:
+            move = self.board.prev_move
+
+            highlight = pygame.Surface((SQRSIZE, SQRSIZE))
+            highlight.fill(self.theme[3])
+            highlight.set_alpha(200)
+
+            surface.blit(highlight, (move.origin.col * SQRSIZE, move.origin.row * SQRSIZE))
+            surface.blit(highlight, (move.dest.col * SQRSIZE, move.dest.row * SQRSIZE))
 
 
                 
