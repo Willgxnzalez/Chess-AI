@@ -10,12 +10,12 @@ class App:
         pygame.display.set_caption("Chess-AI")
         pygame.display.set_icon(pygame.image.load(os.path.join(f"assets/images/icon-1.png")))
         self.clock = pygame.time.Clock()
-        self.engine = Game()
+        self.game = Game()
 
     def mainloop(self) -> None:
-        engine = self.engine
-        board = engine.board
-        dragger = engine.dragger
+        game = self.game
+        board = game.board
+        dragger = game.dragger
 
         run = True
         while run:
@@ -29,13 +29,15 @@ class App:
                         run = False
 
                     if E.key == pygame.K_r:
-                        engine.reset()
-                        engine = self.engine
-                        board = engine.board
-                        dragger = engine.dragger
+                        saved_theme_index = game.theme_index
+                        game.reset()
+                        game = self.game
+                        board = game.board
+                        dragger = game.dragger
+                        game.change_theme(saved_theme_index)
 
                     if E.key == pygame.K_t:
-                        engine.change_theme()
+                        game.change_theme()
 
                 if E.type == pygame.MOUSEBUTTONDOWN:
                     dragger.update_mouse_pos(E.pos)
@@ -43,7 +45,7 @@ class App:
                     row, col = dragger.get_board_pos()
                     selected_square = board[row][col]
 
-                    if selected_square.has_piece() and (selected_square.piece.color == engine.current_turn):
+                    if selected_square.has_piece() and (selected_square.piece.color == game.current_turn):
                         board.get_valid_moves(selected_square.piece, row, col)
                         dragger.set_origin(selected_square)
                         dragger.grab_piece(selected_square.piece)
@@ -61,20 +63,20 @@ class App:
 
                         move_attempt = board.create_move(dragger.get_origin(), selected_square)
                         if board.valid_move(dragger.piece, move_attempt):
-                            engine.change_turn()
+                            game.change_turn()
                             board.move_piece(dragger.piece, move_attempt)
 
                         dragger.release_piece()
             
-            engine.render_bg(self.win)
-            engine.render_previous_move(self.win)
+            game.render_bg(self.win)
+            game.render_previous_move(self.win)
 
             if dragger.holding:
-                engine.render_piece_moves(self.win)
-                engine.render_pieces(self.win)
-                engine.render_held_piece(self.win)
+                game.render_piece_moves(self.win)
+                game.render_pieces(self.win)
+                game.render_held_piece(self.win)
             else:
-                engine.render_pieces(self.win)
+                game.render_pieces(self.win)
             pygame.display.update()
 
         pygame.quit()

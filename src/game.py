@@ -14,11 +14,14 @@ class Game:
     def reset(self):
         self.__init__()
 
-    def change_theme(self):
-        self.theme_index = (self.theme_index + 1) % len(THEMES)
-        self.theme = THEMES[self.theme_index]
+    def change_theme(self, target = None ) -> None:
+        if target:
+            self.theme = THEMES[target]
+        else:
+            self.theme_index = (self.theme_index + 1) % len(THEMES)
+            self.theme = THEMES[self.theme_index]
 
-    def change_turn(self):
+    def change_turn(self) -> None:
         self.current_turn = "black" if self.current_turn == "white" else "white"
 
     def render_bg(self, surface: pygame.surface) -> None:
@@ -54,7 +57,7 @@ class Game:
 
                 surface.blit(highlight, (move.dest.col * SQRSIZE, move.dest.row * SQRSIZE))
 
-    def render_previous_move(self, surface):
+    def render_previous_move(self, surface) -> None:
         if self.board.prev_move:
             move = self.board.prev_move
 
