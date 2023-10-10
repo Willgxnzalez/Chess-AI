@@ -115,3 +115,5 @@ class Board(list):
             if self.in_range(r, c) and (not self[r][c].has_piece() or self[r][c].rivals(piece)):
                 piece.add_move(Move(Square(row, col), Square(r, c)))
 
+    def valid_move(self, piece: Piece, move: Move) -> bool:
+        return move in piece.get_moves()
