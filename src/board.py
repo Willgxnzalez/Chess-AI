@@ -120,3 +120,11 @@ class Board(list):
     
     def create_move(self, origin: Square, dest: Square) -> Move:
         return Move(origin, dest)
+    
+    def move_piece(self, piece: Piece, move: Move) -> None:
+        self[move.origin.row][move.origin.col].piece = None
+        self[move.dest.row][move.dest.col].piece = piece
+
+        piece.moved = True
+        # reset possible moves from old square
+        piece.clear_moves()

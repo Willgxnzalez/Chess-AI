@@ -41,16 +41,17 @@ class App:
                         dragger.update_mouse_pos(E.pos)
 
                 if E.type == pygame.MOUSEBUTTONUP:
-                    dragger.update_mouse_pos(E.pos)
+                    if dragger.holding:
+                        dragger.update_mouse_pos(E.pos)
 
-                    row, col = dragger.get_board_pos()
-                    selected_square = board[row][col]
+                        row, col = dragger.get_board_pos()
+                        selected_square = board[row][col]
 
-                    move_attempt = board.create_move(dragger.get_origin(), selected_square)
-                    if board.valid_move(dragger.piece, move_attempt):
-                        print("Valid move:", move_attempt)
+                        move_attempt = board.create_move(dragger.get_origin(), selected_square)
+                        if board.valid_move(dragger.piece, move_attempt):
+                            board.move_piece(dragger.piece, move_attempt)
 
-                    dragger.release_piece()
+                        dragger.release_piece()
             
             engine.render_bg(self.win)
 
