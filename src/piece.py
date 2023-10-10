@@ -10,10 +10,6 @@ class Piece:
         self.texture = pygame.image.load(os.path.join(f"assets/images/imgs-80px/{self.color}_{self.rank}.png"))
         self._moves = []
         self.active = False
-        self.rect = None
-
-    def set_rect(self, rect: pygame.rect) -> None:
-        self.rect = rect
 
     def add_move(self, move) -> None:
         self._moves.append(move)

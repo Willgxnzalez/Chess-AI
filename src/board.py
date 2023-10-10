@@ -118,11 +118,16 @@ class Board(list):
         return Move(origin, dest)
     
     def move_piece(self, piece: Piece, move: Move) -> None:
-        self[move.origin.row][move.origin.col].piece = None
-        self[move.dest.row][move.dest.col].piece = piece
+        self[move.origin.row][move.origin.col].set_piece(None)
+        self[move.dest.row][move.dest.col].set_piece(piece)
 
         piece.active = True
-        # reset possible moves from old square
         piece.clear_moves()
 
         self.prev_move = move
+
+        if piece.rank == "pawn": 
+            if move.dest.row == 0 or move.dest.row == 7:
+                self[move.dest.row][move.dest.col].set_piece(Queen(piece.color))
+
+            
